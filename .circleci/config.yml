@@ -12,7 +12,6 @@ jobs:
             command: |
               echo $My_env_var
 
-
 workflows:
     jobs:
       - build
