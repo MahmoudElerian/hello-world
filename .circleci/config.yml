@@ -2,20 +2,31 @@
 version: 2.1
 
 jobs:
-  build:
+  print_helloworld:
     docker:
-        - image: circleci/node:13.8.0
+      - image: circleci/node:13.8.0
     steps:
-      - checkout
-      - run:
-          name: "echo an env var that is part of our project"
-          command: |
-            echo $My_env_var
+      - run: echo "Hello World !" > ~/output.txt
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - output.txt
+
+  print_outputfile:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - attach_workspace:
+        at: ~/
+      - run: cat output.txt
 
 workflows:
   test-env-vars:
     jobs:
-      - build
+      - print_helloworld
+      - print_outputfile
+         requires:
+            - print_helloworld
 
 
 
