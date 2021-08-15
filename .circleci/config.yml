@@ -24,7 +24,7 @@ workflows:
   test-env-vars:
     jobs:
       - print_helloworld
-      - print_outputfile
+      - print_outputfile:  
          requires:
             - print_helloworld
 
