@@ -9,7 +9,7 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            if curl -s --head "https://google.com" 
+            if curl -s --head "https://google3333.com" 
             then
               return 0
             else
