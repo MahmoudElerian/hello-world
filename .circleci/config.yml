@@ -1,7 +1,6 @@
 version: 2.1
 commands:
   destroy_environment:
-    description: "Destroying the stack"
     steps:
       - run: 
           command: |
@@ -17,7 +16,7 @@ jobs:
           name: building the stack
           command: |
             aws cloudformation deploy --template-file template.yml --stack-name myteststack
-     
+      - run : return 1
       - destroy_environment
         when : on_fail
 

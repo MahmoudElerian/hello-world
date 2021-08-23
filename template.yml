@@ -5,7 +5,7 @@ Resources:
       SecurityGroups:
         - !Ref InstanceSecurityGroup
       KeyName: wagih
-      ImageId: 'ami-068663a3c619dd892'
+      ImageId: 'ami-0c2b8ca1dad447f8a'
   InstanceSecurityGroup:
     Type: 'AWS::EC2::SecurityGroup'
     Properties:
