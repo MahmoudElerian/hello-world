@@ -1,20 +1,26 @@
 version: 2.1
+commands:
+  destroy_environment:
+    description: "Destroying the stack"
+    steps:
+      - run: 
+          command: |
+            aws cloudformation delete-stack --stackname myteststack
 
 jobs:
   configure_infrastructure:
     docker:
-      - image: python:3.7-alpine3.11
+      - image: amazon/aws-cli
     steps:
-      - run: apk add --update curl
+      - checkout
       - run:
-          name: Install dependencies
+          name: building the stack
           command: |
-            if curl -s --head "https://google3333.com" 
-            then
-              return 0
-            else
-              return 1
-            fi
+            aws cloudformation deploy --stack-name myteststack --template-body template.yml
+      - run : return 1
+      - destroy_environment
+          when : on_fail
+
 
 workflows:
   my_workflow:
