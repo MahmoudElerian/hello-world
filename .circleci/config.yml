@@ -16,10 +16,10 @@ jobs:
       - run:
           name: building the stack
           command: |
-            aws cloudformation deploy --stack-name myteststack --template-body template.yml
+            aws cloudformation deploy --stack-name myteststack --template-file template.yml
       - run : return 1
       - destroy_environment
-          when : on_fail
+        when : on_fail
 
 
 workflows:
