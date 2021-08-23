@@ -5,7 +5,7 @@ commands:
       - run: 
           when : on_fail
           command: |
-            aws cloudformation delete-stack --stack=name myteststack
+            aws cloudformation delete-stack --stack-name myteststack
 
 jobs:
   configure_infrastructure:
