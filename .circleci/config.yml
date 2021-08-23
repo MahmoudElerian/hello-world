@@ -5,17 +5,16 @@ jobs:
     docker:
       - image: python:3.7-alpine3.11
     steps:
-      - checkout
-      - add_ssh_keys:
-          fingerprints: ["ba:66:be:c6:ec:bb:b9:8f:8b:97:81:be:c6:cc:e3:6a"] # You can get this ID in the section where you registered the SSH Key
+      - run: apk add --update curl
       - run:
           name: Install dependencies
           command: |
-            apk add --update ansible # install the dependencies needed for your playbook
-      - run:
-          name: Configure server
-          command: |
-            ansible-playbook -i inventory.txt main.yml
+            if curl -s --head "https://google.com" 
+            then
+              return 0
+            else
+              return 1
+            fi
 
 workflows:
   my_workflow:
